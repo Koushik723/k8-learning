@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myvolconfig
+spec:
+  containers:
+  - name: c1
+    image: httpd
+    volumeMounts:
+      - name:  testconfigmap
+        mountPath:  "/tmp/config"
+  volumes:
+    - name: testconfigmap
+      configMap:
+          name: mymap # this should be same as created in the first step (map name)
+          items:
+            - key: sample.conf # name of the file used during creating the map (file name)
+              path: sample.conf

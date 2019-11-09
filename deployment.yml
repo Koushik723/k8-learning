@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  deployments
+spec:
+  replicas: 2
+  template:
+    metadata: 
+      name: deployment
+      labels:
+        objecttype: deployment
+    spec:
+     containers:
+       - image:  image
+         name:  my-name
+         env:
+           - name:  ENVVARNAME
+             value:  ENVVARVALUE
