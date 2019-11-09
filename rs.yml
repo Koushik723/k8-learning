@@ -1,0 +1,24 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 2
+  selector: #tells controller which pod to watch to this replication controller
+    matchExpression:
+      - {key: myapp, operator: In, values: [rs-app,rs-app1]}
+      - {key: env, operator: NotIn, values: [dev,qa]}
+    app: rc-app1
+  template:     # teemplate to launch new pod
+    metadata:
+      name: myapp
+      labels:     # selector values need to match the labels values specified to pod template
+        app: rc-app1
+    spec:
+      containers:
+        - name: c00
+          image: ubuntu
+          command:
+          - /bin/bash
+          - "-c"
+          - "while true; do echo Hello-koushik; sleep5 ; done"

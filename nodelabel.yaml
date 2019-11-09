@@ -1,0 +1,16 @@
+kind: pod
+apiVersion: v1
+metadata: 
+  name: nodelabels
+  labels:
+    env: development
+spec:
+  containers:
+    - name: c01
+      image: ubuntu
+      command:
+        - /bin/bash
+        - "-c"
+        - "while true; do echo Hello-koushik; sleep5 ; done"
+  nodeSelector:
+    hardware: t2-medium

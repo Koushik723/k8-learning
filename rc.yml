@@ -1,0 +1,21 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: replicationcontroller
+spec:
+  replicas: 2
+  selector:   #tells controller which pod to watch to this replication controller
+    app: rc-app1
+  template:     # teemplate to launch new pod
+    metadata:
+      name: myapp
+      labels:     # selector values need to match the labels values specified to pod template
+        app: rc-app1
+    spec:
+      containers:
+        - name: c00
+          image: ubuntu
+          command:
+          - /bin/bash
+          - "-c"
+          - "while true; do echo Hello-koushik; sleep5 ; done"
