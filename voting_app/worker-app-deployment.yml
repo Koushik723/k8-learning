@@ -13,7 +13,7 @@ spec:
     template:
       metadata:
         name: worker-app-pod
-        labels:        #used to tag pods or resources in the kubernetes 
+        labels:        #useddf to tag pods or resources in the kubernetes 
           name: worker-app-pod
           app: demo-voting-app
       spec:
