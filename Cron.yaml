@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata: 
+  name: reporting-cron-job
+spec:  ### this spec is for Cron Job
+  schedule: "*/1 * * * *"  # For CronJob
+  jobTemplate:  
+    spec:   ### this spec is for job
+       completions: 3
+       parallelism: 3 ###  Job completes here
+       template:
+          spec: ## Spec for pod
+              containers:
+                - name: reporting-tool
+                  image: reporting-tool
+              restartPolicy: Never
